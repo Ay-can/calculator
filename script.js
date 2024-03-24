@@ -14,7 +14,26 @@ function div(a, b) {
   return a / b;
 }
 
-console.log(add(5, 5));
-console.log(sub(5, 5));
-console.log(mult(5, 5));
-console.log(div(5, 5));
+function operate(firstNum, operation, secondNum) {
+  switch (operation) {
+    case "+":
+      add(firstNum, secondNum);
+      break;
+    case "-":
+      sub(firstNum, secondNum);
+      break;
+    case "*":
+      mult(firstNum, secondNum);
+      break;
+    case "/":
+      div(firstNum, secondNum);
+      break;
+
+    default:
+      console.log("Enter a operation");
+  }
+}
+
+let firstNum = 0;
+let secondNum = 0;
+let operation = "";
