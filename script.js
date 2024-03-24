@@ -38,3 +38,12 @@ function operate(firstNum, operation, secondNum) {
 let firstNum = 0;
 let secondNum = 0;
 let operation = "";
+
+const buttons = document.querySelectorAll("button");
+const display = document.querySelector(".screen");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log(button.textContent);
+    display.innerText = button.textContent;
+  });
+});
