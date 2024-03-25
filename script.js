@@ -40,7 +40,7 @@ function operate(firstNum, operation, secondNum) {
 let firstNum = 0;
 let secondNum = 0;
 let operation = "";
-const instructions = [];
+let instructions = [];
 
 // change display based on button that is pressed
 // do this for all numbers buttons, keep adding it to the display as a string
@@ -81,13 +81,19 @@ const equalsBtn = document.querySelector("#equals");
 equalsBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   instructions.push(displayValue);
+  console.log(instructions);
 
+  // for every 3 items display
   // pop 3 values
-  firstNum = parseInt(instructions.pop());
-  operation = instructions.pop();
-  secondNum = parseInt(instructions.pop());
-  let answer = operate(firstNum, operation, secondNum);
-  displayScreen.innerText = answer;
+  for (let i = 0; i < instructions.length; i++) {
+    firstNum = parseInt(instructions.shift());
+    operation = instructions.shift();
+    secondNum = parseInt(instructions.shift());
+    let answer = operate(firstNum, operation, secondNum);
+    instructions.unshift(answer);
+    console.log(instructions);
+    displayScreen.innerText = answer;
+  }
 });
 
 // Clear the screen when C is pressed
@@ -95,4 +101,5 @@ const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   displayValue = "";
+  instructions = [];
 });
