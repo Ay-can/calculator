@@ -32,9 +32,16 @@ function operate(firstNum, operation, secondNum) {
       break;
 
     default:
-      console.log("Enter a operation");
+      calculation = 0;
   }
   return calculation;
+}
+
+function isDividingByZero(operation, secondNum) {
+  if (operation === "/" && secondNum === 0) {
+    return true;
+  }
+  return false;
 }
 
 let firstNum = 0;
@@ -59,6 +66,7 @@ numberButtons.forEach((button) => {
       displayScreen.innerText = "";
       displayValue = "";
     }
+    displayScreen.innerText = "";
     displayScreen.innerText += button.innerText;
     displayValue = displayScreen.innerText;
   });
@@ -92,8 +100,12 @@ equalsBtn.addEventListener("click", () => {
     answer = operate(firstNum, operation, secondNum);
     instructions.unshift(answer);
   }
-  // display answer and set value
-  displayScreen.innerText = answer;
+
+  if (isDividingByZero(operation, secondNum)) {
+    displayScreen.innerText = "I be popping bottles, sparkles and champagne";
+    return;
+  }
+  displayScreen.innerText = answer.toFixed(10);
   displayValue = answer;
   instructions = [];
 });
@@ -105,3 +117,8 @@ clearBtn.addEventListener("click", () => {
   displayValue = "";
   instructions = [];
 });
+
+// fix bug when pressing number and opartor and equals sign
+// display message when dividing to 0
+// when only pressing equals do nothing
+// clear screen when reentering numbers
