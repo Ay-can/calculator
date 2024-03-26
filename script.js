@@ -72,6 +72,7 @@ operationButtons.forEach((button) => {
     instructions.push(displayValue);
     instructions.push(button.innerText);
     displayScreen.innerText = button.innerText;
+    console.log(instructions);
   });
 });
 
@@ -82,18 +83,19 @@ equalsBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   instructions.push(displayValue);
   console.log(instructions);
+  let answer = 0;
 
-  // for every 3 items display
-  // pop 3 values
   for (let i = 0; i < instructions.length; i++) {
     firstNum = parseInt(instructions.shift());
     operation = instructions.shift();
     secondNum = parseInt(instructions.shift());
-    let answer = operate(firstNum, operation, secondNum);
+    answer = operate(firstNum, operation, secondNum);
     instructions.unshift(answer);
-    console.log(instructions);
-    displayScreen.innerText = answer;
   }
+  // display answer and set value
+  displayScreen.innerText = answer;
+  displayValue = answer;
+  instructions = [];
 });
 
 // Clear the screen when C is pressed
