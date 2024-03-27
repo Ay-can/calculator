@@ -44,6 +44,15 @@ function isDividingByZero(operation, secondNum) {
   return false;
 }
 
+function includesOperator(input) {
+  return (
+    input.includes("+") ||
+    input.includes("-") ||
+    input.includes("/") ||
+    input.includes("*")
+  );
+}
+
 let firstNum = 0;
 let secondNum = 0;
 let operation = "";
@@ -57,16 +66,10 @@ let displayValue;
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (
-      displayScreen.innerText === "+" ||
-      displayScreen.innerText === "-" ||
-      displayScreen.innerText === "/" ||
-      displayScreen.innerText === "*"
-    ) {
+    if (includesOperator(displayScreen.innerText)) {
       displayScreen.innerText = "";
       displayValue = "";
     }
-    displayScreen.innerText = "";
     displayScreen.innerText += button.innerText;
     displayValue = displayScreen.innerText;
   });
@@ -77,6 +80,9 @@ numberButtons.forEach((button) => {
 const operationButtons = document.querySelectorAll(".operation");
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (displayValue === "" || includesOperator(displayScreen.innerText)) {
+      return;
+    }
     instructions.push(displayValue);
     instructions.push(button.innerText);
     displayScreen.innerText = button.innerText;
@@ -88,6 +94,9 @@ operationButtons.forEach((button) => {
 // get the last value and push it to the array
 const equalsBtn = document.querySelector("#equals");
 equalsBtn.addEventListener("click", () => {
+  if (includesOperator(displayScreen.innerText)) {
+    return;
+  }
   displayScreen.innerText = "";
   instructions.push(displayValue);
   console.log(instructions);
@@ -105,7 +114,7 @@ equalsBtn.addEventListener("click", () => {
     displayScreen.innerText = "I be popping bottles, sparkles and champagne";
     return;
   }
-  displayScreen.innerText = answer.toFixed(10);
+  displayScreen.innerText = answer;
   displayValue = answer;
   instructions = [];
 });
@@ -119,6 +128,4 @@ clearBtn.addEventListener("click", () => {
 });
 
 // fix bug when pressing number and opartor and equals sign
-// display message when dividing to 0
 // when only pressing equals do nothing
-// clear screen when reentering numbers
