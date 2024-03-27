@@ -86,7 +86,6 @@ operationButtons.forEach((button) => {
     instructions.push(displayValue);
     instructions.push(button.innerText);
     displayScreen.innerText = button.innerText;
-    console.log(instructions);
   });
 });
 
@@ -94,12 +93,11 @@ operationButtons.forEach((button) => {
 // get the last value and push it to the array
 const equalsBtn = document.querySelector("#equals");
 equalsBtn.addEventListener("click", () => {
-  if (includesOperator(displayScreen.innerText)) {
+  if (includesOperator(displayScreen.innerText) || displayValue === 0) {
     return;
   }
   displayScreen.innerText = "";
   instructions.push(displayValue);
-  console.log(instructions);
   let answer = 0;
 
   for (let i = 0; i < instructions.length; i++) {
@@ -127,5 +125,15 @@ clearBtn.addEventListener("click", () => {
   instructions = [];
 });
 
-// fix bug when pressing number and opartor and equals sign
-// when only pressing equals do nothing
+const backspaceBtn = document.querySelector("#backspace");
+backspaceBtn.addEventListener("click", () => {
+  let screenLength = displayScreen.innerText.length;
+  let slice = displayScreen.innerText.slice(0, screenLength - 1);
+  displayScreen.innerText = slice;
+});
+
+// add floating point button, only allow one dot
+// allow the user to use the backspace button to delete wrong presses
+// make it look nice with css
+// add keyboard support
+// refactor code to use functions
