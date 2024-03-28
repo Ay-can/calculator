@@ -57,6 +57,7 @@ let firstNum = 0;
 let secondNum = 0;
 let operation = "";
 let instructions = [];
+let isFloatingPoint = false;
 
 // change display based on button that is pressed
 // do this for all numbers buttons, keep adding it to the display as a string
@@ -70,6 +71,7 @@ numberButtons.forEach((button) => {
       displayScreen.innerText = "";
       displayValue = "";
     }
+    console.log(instructions);
     displayScreen.innerText += button.innerText;
     displayValue = displayScreen.innerText;
   });
@@ -79,7 +81,9 @@ numberButtons.forEach((button) => {
 // and push the oparation and wait for the last value
 const operationButtons = document.querySelectorAll(".operation");
 operationButtons.forEach((button) => {
+  console.log(instructions);
   button.addEventListener("click", () => {
+    isFloatingPoint = false;
     if (displayValue === "" || includesOperator(displayScreen.innerText)) {
       return;
     }
@@ -99,11 +103,11 @@ equalsBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   instructions.push(displayValue);
   let answer = 0;
-
+  // change this to use floats instead
   for (let i = 0; i < instructions.length; i++) {
-    firstNum = parseInt(instructions.shift());
+    firstNum = parseFloat(instructions.shift());
     operation = instructions.shift();
-    secondNum = parseInt(instructions.shift());
+    secondNum = parseFloat(instructions.shift());
     answer = operate(firstNum, operation, secondNum);
     instructions.unshift(answer);
   }
@@ -112,9 +116,11 @@ equalsBtn.addEventListener("click", () => {
     displayScreen.innerText = "I be popping bottles, sparkles and champagne";
     return;
   }
+  console.log(instructions);
   displayScreen.innerText = answer;
   displayValue = answer;
   instructions = [];
+  isFloatingPoint = false;
 });
 
 // Clear the screen when C is pressed
@@ -123,6 +129,7 @@ clearBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   displayValue = "";
   instructions = [];
+  isFloatingPoint = false;
 });
 
 const backspaceBtn = document.querySelector("#backspace");
@@ -132,8 +139,18 @@ backspaceBtn.addEventListener("click", () => {
   displayScreen.innerText = slice;
 });
 
+const dotBtn = document.querySelector("#dot");
+dotBtn.addEventListener("click", () => {
+  if (!isFloatingPoint) {
+    console.log("hello");
+    isFloatingPoint = true;
+    displayValue += ".";
+    displayScreen.innerText += ".";
+  }
+});
+
 // add floating point button, only allow one dot
-// allow the user to use the backspace button to delete wrong presses
+// delete answer after text
 // make it look nice with css
 // add keyboard support
 // refactor code to use functions
