@@ -58,6 +58,7 @@ let secondNum = 0;
 let operation = "";
 let instructions = [];
 let isFloatingPoint = false;
+let isResult = false;
 
 // change display based on button that is pressed
 // do this for all numbers buttons, keep adding it to the display as a string
@@ -67,9 +68,10 @@ let displayValue;
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (includesOperator(displayScreen.innerText)) {
+    if (includesOperator(displayScreen.innerText) || isResult) {
       displayScreen.innerText = "";
       displayValue = "";
+      isResult = false;
     }
     console.log(instructions);
     displayScreen.innerText += button.innerText;
@@ -100,6 +102,7 @@ equalsBtn.addEventListener("click", () => {
   if (includesOperator(displayScreen.innerText) || displayValue === 0) {
     return;
   }
+  isResult = true;
   displayScreen.innerText = "";
   instructions.push(displayValue);
   let answer = 0;
@@ -130,6 +133,7 @@ clearBtn.addEventListener("click", () => {
   displayValue = "";
   instructions = [];
   isFloatingPoint = false;
+  isResult = false;
 });
 
 const backspaceBtn = document.querySelector("#backspace");
@@ -149,8 +153,7 @@ dotBtn.addEventListener("click", () => {
   }
 });
 
-// add floating point button, only allow one dot
-// delete answer after text
+// delete answer after text input
 // make it look nice with css
 // add keyboard support
 // refactor code to use functions
