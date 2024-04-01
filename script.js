@@ -106,7 +106,7 @@ equalsBtn.addEventListener("click", () => {
   displayScreen.innerText = "";
   instructions.push(displayValue);
   let answer = 0;
-  // change this to use floats instead
+
   for (let i = 0; i < instructions.length; i++) {
     firstNum = parseFloat(instructions.shift());
     operation = instructions.shift();
@@ -153,7 +153,6 @@ dotBtn.addEventListener("click", () => {
   }
 });
 
-// delete answer after text input
 // make it look nice with css
 // add keyboard support
 // refactor code to use functions
