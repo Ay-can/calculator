@@ -74,8 +74,10 @@ numberButtons.forEach((button) => {
       isResult = false;
     }
     console.log(instructions);
-    displayScreen.innerText += button.innerText;
-    displayValue = displayScreen.innerText;
+    if (displayScreen.innerText.length <= 12) {
+      displayScreen.innerText += button.innerText;
+      displayValue = displayScreen.innerText;
+    }
   });
 });
 

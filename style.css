@@ -12,13 +12,15 @@ body {
 }
 
 .calculator-container {
-  border: 8px solid #fcf6f5ff;
+  border: 4px solid #fcf6f5ff;
   width: 350px;
   height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 10px 10px 5px lightslategray;
+  padding: 30px;
 }
 
 .button-container {
@@ -31,13 +33,15 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  background-color: #89abe3ff;
+  background-color: #e3cd81ff;
   width: 350px;
-  height: 400px;
-  font-weight: 900;
-  color: #fcf6f5ff;
-  font-size: 32px;
-  padding: 10px 0px;
+  height: 600px;
+  font-weight: 600;
+  font-size: 24px;
+  border: 2px solid #89abe3ff;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border: 2px solid black;
 }
 
 .number-container {
@@ -48,7 +52,7 @@ body {
 }
 
 .number-container button {
-  width: 92px;
+  width: 80px;
   flex: auto;
 }
 
@@ -60,9 +64,10 @@ body {
 }
 
 .operations button {
-  width: 70px;
+  width: 90px;
   height: 70px;
   flex: auto;
+  font-weight: 900;
 }
 
 button {
@@ -71,4 +76,29 @@ button {
   color: #fcf6f5ff;
   font-weight: 900;
   font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+#equals {
+  background-color: lightseagreen;
+}
+
+#backspace {
+  background-color: lightcoral;
+}
+
+#clear {
+  background-color: #e3cd81ff;
+}
+
+.operation {
+  background-color: #e3cd81ff;
+}
+
+.numbers,
+#dot {
+  background-color: lightskyblue;
 }
