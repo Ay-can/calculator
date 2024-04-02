@@ -152,5 +152,3 @@ dotBtn.addEventListener("click", () => {
     displayScreen.innerText += ".";
   }
 });
-
-// add keyboard support
