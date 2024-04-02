@@ -64,6 +64,7 @@ let isResult = false;
 const displayScreen = document.querySelector(".screen");
 const numberButtons = document.querySelectorAll(".numbers");
 let displayValue;
+displayScreen.innerText = "Hello";
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
