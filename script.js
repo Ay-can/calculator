@@ -1,4 +1,3 @@
-// Add proper error checking if string 0 etc
 function add(a, b) {
   return a + b;
 }
