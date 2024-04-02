@@ -73,7 +73,7 @@ numberButtons.forEach((button) => {
       displayValue = "";
       isResult = false;
     }
-    console.log(instructions);
+
     if (displayScreen.innerText.length <= 12) {
       displayScreen.innerText += button.innerText;
       displayValue = displayScreen.innerText;
@@ -85,7 +85,6 @@ numberButtons.forEach((button) => {
 // and push the oparation and wait for the last value
 const operationButtons = document.querySelectorAll(".operation");
 operationButtons.forEach((button) => {
-  console.log(instructions);
   button.addEventListener("click", () => {
     isFloatingPoint = false;
     if (displayValue === "" || includesOperator(displayScreen.innerText)) {
@@ -121,7 +120,7 @@ equalsBtn.addEventListener("click", () => {
     displayScreen.innerText = "I be popping bottles, sparkles and champagne";
     return;
   }
-  console.log(instructions);
+
   displayScreen.innerText = answer;
   displayValue = answer;
   instructions = [];
@@ -148,13 +147,10 @@ backspaceBtn.addEventListener("click", () => {
 const dotBtn = document.querySelector("#dot");
 dotBtn.addEventListener("click", () => {
   if (!isFloatingPoint) {
-    console.log("hello");
     isFloatingPoint = true;
     displayValue += ".";
     displayScreen.innerText += ".";
   }
 });
 
-// make it look nice with css
 // add keyboard support
-// refactor code to use functions
